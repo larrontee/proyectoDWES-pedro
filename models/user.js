@@ -6,7 +6,6 @@ let Post = require('../models/Post.js');
 let bcrypt = require('bcryptjs');
 let SALT_WORK_FACTOR = 10;
 let esquemaUsuario = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     usuario: {
         type: String,
         required: true,
@@ -32,7 +31,7 @@ let esquemaUsuario = new Schema({
     numSeguidores: {
         type: Number,
         default: 0        
-    }, 
+    },
     seguidos: [{
         type: Schema.ObjectId,
         ref: 'User',
