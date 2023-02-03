@@ -11,6 +11,7 @@ let usersRouter = require('./routes/users');
 let bodyparser = require('body-parser');
 let userModel = require('./models/user');
 let postModel = require('./models/post');
+let albumModel = require('./models/album');
 
 let mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
