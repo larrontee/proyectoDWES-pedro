@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Cancion = require('../models/Cancion.js');
+var User = require('../models/User.js');
 
 var playlistSchema = new Schema({
     nombre:{
-        type: Schema.ObjectId,
-        ref: 'User',
+        type:String,
         required: true
     },
     creador:{
-        type:Number,
+        type: Schema.ObjectId,
+        ref: 'User',
         required: true
     },
     num_canciones:{
