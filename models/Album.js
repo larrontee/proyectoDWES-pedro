@@ -22,8 +22,7 @@ var AlbumSchema = new Schema({
         required: true
     }],
     descripcion:{
-        type:String,
-        required:false
+        type:String
     },
     numeroSeguidores:{
         type:Number,
