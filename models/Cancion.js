@@ -16,7 +16,7 @@ var CancionSchema = new Schema({
         type: String,
         required: true
     },
-    creationdate: {
+    creationDate: {
         type: Date,
         default: Date.now
     },
