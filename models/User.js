@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let Post = require('../models/Post.js');
+let User = require('../models/User.js');
 
 //Para la encriptación del password
 let bcrypt = require('bcryptjs');
