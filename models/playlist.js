@@ -1,28 +1,28 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Cancion = require('../models/Cancion.js');
 
-var playlist = new Schema({
-    id_playlist:{
-        type:Number,
-        required: true
-    },
-    nombre:[{
+var playlistSchema = new Schema({
+    nombre:{
         type: Schema.ObjectId,
         ref: 'User',
         required: true
-    }],
+    },
     creador:{
         type:Number,
         required: true
     },
-    num_canciones:[{
+    num_canciones:{
+        type:Number,
+        required: true
+    },
+    canciones:[{
         type:Schema.ObjectId,
         ref: 'Cancion',
         required: true
     }],
     descripcion:{
-        type:String,
-        required:false
+        type:String
     },
     num_seguidores:{
         type:Number,
@@ -35,4 +35,4 @@ var playlist = new Schema({
         required:true
     }
 });
-module.exports = mongoose.model('Playlist', playlist);
+module.exports = mongoose.model('Playlist', playlistSchema);
