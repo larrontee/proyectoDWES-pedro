@@ -5,7 +5,7 @@ let User = require('../models/User.js');
 //Para la encriptación del password
 let bcrypt = require('bcryptjs');
 let SALT_WORK_FACTOR = 10;
-let esquemaUsuario = new Schema({
+let UserSchema = new Schema({
     usuario: {
         type: String,
         required: true,
@@ -39,7 +39,7 @@ let esquemaUsuario = new Schema({
     }]
 });
 
-esquemaUsuario.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
     var user = this;
     // solo aplica una función hash al password si ha sido modificado (o es nuevo)
     if (!user.isModified('password ')) return next();
@@ -56,7 +56,7 @@ esquemaUsuario.pre('save', function (next) {
     });
 });
 
-esquemaUsuario.methods.comparePassword = function (candidatePassword, cb) {
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);

@@ -6,12 +6,13 @@ let logger = require('morgan');
 
 require('dotenv').config();
 
-let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+// let indexRouter = require('./routes/index');
+// let usersRouter = require('./routes/users');
 let bodyparser = require('body-parser');
-let userModel = require('./models/user');
-let postModel = require('./models/post');
-let albumModel = require('./models/album');
+let userModel = require('./models/User');
+let postModel = require('./models/Cancion');
+let albumModel = require('./models/Album');
+let playListModel = require('./models/Playlist');
 
 let mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
@@ -35,8 +36,8 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
