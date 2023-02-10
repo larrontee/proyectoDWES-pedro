@@ -13,6 +13,8 @@ let userModel = require('./models/User');
 let postModel = require('./models/Cancion');
 let albumModel = require('./models/Album');
 let playListModel = require('./models/Playlist');
+let usersRouter = require('./routes/users');
+let albumsRouter = require('./routes/albunes');
 
 let mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
@@ -36,9 +38,10 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 
+// app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/albunes', albumsRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -54,5 +57,4 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;
