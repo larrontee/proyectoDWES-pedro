@@ -7,6 +7,10 @@ var CancionSchema = new Schema({
         type: String,
         required: true
     },
+    pertenece: {
+        type: String,
+        required: true
+    },
     duracion: {
         type: Number,
         required: true
