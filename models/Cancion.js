@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var User = require('../models/User.js');
+var Album = require('../models/Album.js');
 
 var CancionSchema = new Schema({
     titulo: {
@@ -8,16 +9,20 @@ var CancionSchema = new Schema({
         required: true
     },
     pertenece: {
+        //     type: Schema.ObjectId,
+        //     ref: 'Album',
+
         type: String,
         required: true
+
     },
     duracion: {
         type: Number,
         required: true
     },
-    fullname: String,
     autor: {
-        type: String,
+        type: Schema.ObjectId,
+        ref: 'User',
         required: true
     },
     creationDate: {
@@ -27,7 +32,8 @@ var CancionSchema = new Schema({
     generoMusical: {
         type: String,
         required: true
-    },
+    }
+    ,
     colabora: [{
         type: Schema.ObjectId,
         ref: 'User',
