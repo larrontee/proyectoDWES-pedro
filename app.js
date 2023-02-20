@@ -16,6 +16,7 @@ let playListModel = require('./models/Playlist');
 let usersRouter = require('./routes/users');
 let albumsRouter = require('./routes/albunes');
 let songsRouter = require('./routes/canciones');
+let playlistRouter = require('./routes/playLists');
 
 let mongoose = require('mongoose');
 mongoose.set('strictQuery', false); //requerido para quitar el warning
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/albunes', albumsRouter);
 app.use('/songs', songsRouter);
+app.use('/playlist', playlistRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

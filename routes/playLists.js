@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var playlist = require('../models/Playlist');
+var db = mongoose.connection;
 
 // GET de una única playlist por su Id 
 router.get('/:id', function (req, res, next) {

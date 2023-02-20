@@ -27,13 +27,11 @@ var playlistSchema = new Schema({
     },
     num_seguidores:{
         type:Number,
-        default:0,
-        required: true
+        default:0
     },
     fechaDeCreacion:{
         type:Date,
-        default: Date.now,
-        required:true
+        default: Date.now
     }
 });
 module.exports = mongoose.model('Playlist', playlistSchema);
