@@ -19,8 +19,7 @@ var playlistSchema = new Schema({
     },
     canciones:[{
         type:Schema.ObjectId,
-        ref: 'Cancion',
-        required: true
+        ref: 'Cancion'
     }],
     descripcion:{
         type:String
