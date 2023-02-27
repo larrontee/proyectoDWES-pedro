@@ -28,9 +28,6 @@ mongoose.connection;
 
 let app = express();
 
-const { body, validationResult } = require('express-validator');
-const Playlist = require('./models/Playlist');
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -64,42 +61,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// Validaciones de la colleción Playlist
-app.post(
-  '/playlist',
-  // El nombre debe ser de tipo String
-  body('nombre').isString(),
-  // La longitud del creador debe ser mínimo 5
-  body('creador').isLength({min: 5}),
-  // Num_canciones debe ser de tipo Numeric
-  body('num_canciones').isNumeric(),
-  // Canciones debe ser un Array de canciones
-  body('canciones').isArray(),
-  // Descripcion debe ser de tipo String
-  body('descripcion').isString(),
-  // Num_seguidores debe ser de tipo Numeric
-  body('num_seguidores').isNumeric(),
-  // FechaDeCreacion debe ser de tipo Date
-  body('fechaDeCreacion').isDate(),
-
-  (req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    Playlist.create({
-      nombre: req.body.nombre,
-      creador: req.body.creador,
-      num_canciones: req.body.num_canciones,
-      canciones: req.body.canciones,
-      descripcion: req.body.descripcion,
-      num_seguidores: req.body.num_seguidores,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-    }).then(playlist => res.json(playlist));
-  },
-);
 
 module.exports = app;
