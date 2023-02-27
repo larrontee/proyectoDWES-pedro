@@ -5,8 +5,16 @@ var playlist = require('../models/Playlist');
 var db = mongoose.connection;
 
 // GET de una única playlist por su Id 
-router.get('/:id', function (req, res, next) {
-  playlist.findById(req.params.id, function (err, playlist) {
+router.get('/:nombre', function (req, res, next) {
+  playlist.find(req.params.nombre, function (err, playlist) {
+    if (err) res.status(500).send(err);
+    else res.status(200).json(playlist);
+  });
+});
+
+// GET del listado de usuarios ordenados por fecha de registro
+router.get('/', function(req, res, next) {
+  playlist.find().sort('num_seguidores').exec(function(err, playlist) {
     if (err) res.status(500).send(err);
     else res.status(200).json(playlist);
   });
@@ -37,8 +45,8 @@ router.delete('/:id', function (req, res, next) {
 });
 
 // GET del listado de posts ordenados por fecha de publicación 
-router.get('/', function (req, res, next) {
-  Post.find().sort('-publicationdate').populate('nombre').populate('canciones', {
+router.get('/ordenados', function (req, res, next) {
+  playlist.find().sort('publicatedate').populate('nombre').populate('canciones', {
     _id: 0,
     nombre: 1
   }).exec(function (err, playlist) {
