@@ -9,10 +9,10 @@ var CancionSchema = new Schema({
         required: true
     },
     pertenece: {
-        //     type: Schema.ObjectId,
-        //     ref: 'Album',
+        type: Schema.ObjectId,
+        ref: 'Album',
 
-        type: String,
+        // type: String,
         required: true
 
     },
